@@ -1,4 +1,4 @@
-function [PL_data, PL_VoIP , APDd, APDv, MPDd, MPDv , TT] = Sim3(lambda,C,f,P, n)
+function [PL_data, PL_VoIP , APDd, APDv, MPDd, MPDv , TT] = Sim3A(lambda,C,f,P, n, b)
 % INPUT PARAMETERS:
 %  lambda - packet rate (packets/sec)
 %  C      - link bandwidth (Mbps)
@@ -96,23 +96,29 @@ while TRANSPACKETS_DATA + TRANSPACKETS_VOIP<P                        % Stopping 
 
         case DEPARTURE          % If first event is a DEPARTURE
             
-            if (PacketType == DATA) % Data 
-                TRANSBYTES_DATA= TRANSBYTES_DATA + PacketSize;
-                DELAYS_DATA = DELAYS_DATA + (Clock - ArrInstant);
-                if Clock - ArrInstant > MAXDELAY_DATA
-                    MAXDELAY_DATA= Clock - ArrInstant;
+            if (rand() < (1-b)^(PacketSize*8))
+                if (PacketType == DATA) % Data 
+                    TRANSBYTES_DATA= TRANSBYTES_DATA + PacketSize;
+                    DELAYS_DATA = DELAYS_DATA + (Clock - ArrInstant);
+                    if Clock - ArrInstant > MAXDELAY_DATA
+                        MAXDELAY_DATA= Clock - ArrInstant;
+                    end
+                    TRANSPACKETS_DATA= TRANSPACKETS_DATA + 1;
+                else % VoIP
+                    TRANSBYTES_VOIP= TRANSBYTES_VOIP + PacketSize;
+                    DELAYS_VOIP= DELAYS_VOIP + (Clock - ArrInstant);
+                    if Clock - ArrInstant > MAXDELAY_VOIP
+                        MAXDELAY_VOIP= Clock - ArrInstant;
+                    end
+                    TRANSPACKETS_VOIP= TRANSPACKETS_VOIP + 1;
                 end
-                TRANSPACKETS_DATA= TRANSPACKETS_DATA + 1;
-            else % VoIP
-                TRANSBYTES_VOIP= TRANSBYTES_VOIP + PacketSize;
-                DELAYS_VOIP= DELAYS_VOIP + (Clock - ArrInstant);
-                if Clock - ArrInstant > MAXDELAY_VOIP
-                    MAXDELAY_VOIP= Clock - ArrInstant;
+            else
+                 if (PacketType == DATA)         % Data Packet
+                    LOSTPACKETS_DATA = LOSTPACKETS_DATA + 1;
+                else                            % VoIP Packet
+                    LOSTPACKETS_VOIP = LOSTPACKETS_VOIP + 1;
                 end
-                TRANSPACKETS_VOIP= TRANSPACKETS_VOIP + 1;
             end
-
-
 
 
             if QUEUEOCCUPATION > 0
@@ -122,12 +128,6 @@ while TRANSPACKETS_DATA + TRANSPACKETS_VOIP<P                        % Stopping 
             else
                 STATE= 0;
             end
-
-            %if PacketType == DATA
-                
-            %else
-
-            %end
     end
 end
 
@@ -139,7 +139,7 @@ APDd = 1000*DELAYS_DATA/TRANSPACKETS_DATA;                     % in milliseconds
 APDv = 1000*DELAYS_VOIP/TRANSPACKETS_VOIP;                     % in milliseconds
 MPDd = 1000*MAXDELAY_DATA;                                       % in milliseconds
 MPDv = 1000*MAXDELAY_VOIP;                                       % in milliseconds
-TT = 10e-6*(TRANSBYTES_DATA+TRANSBYTES_VOIP)*8/Clock;  % in Mbps
+TT = 1e-6*(TRANSBYTES_DATA+TRANSBYTES_VOIP)*8/Clock;  % in Mbps
 
 %APD= 1000*DELAYS/TRANSPACKETS;     % in milliseconds
 %MPD= 1000*MAXDELAY;                % in milliseconds
