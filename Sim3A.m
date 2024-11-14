@@ -95,7 +95,6 @@ while TRANSPACKETS_DATA + TRANSPACKETS_VOIP<P                        % Stopping 
             end
 
         case DEPARTURE          % If first event is a DEPARTURE
-            
             if (rand() < (1-b)^(PacketSize*8))
                 if (PacketType == DATA) % Data 
                     TRANSBYTES_DATA= TRANSBYTES_DATA + PacketSize;

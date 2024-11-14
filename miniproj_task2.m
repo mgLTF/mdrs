@@ -83,84 +83,132 @@ end
 % 
  fprintf('Throughput (Mbps)\t= %.2e +- %.2e\n', mean(TT), term(TT));
 
-%% b
-figure(1);
+%% dimensions
+figureWidth = 280; % Desired width in pixels
+figureHeight = 420; % Desired height in pixels
+ 
+ %% b
+f1a = figure(1);
 %data
 hold on;
 grid on;
 
 bar(nVoip, PLd_results');
 title('Packet loss of Data (%)');
-
+ylabel('Packet Loss (%)');
+xlabel('Number of VoIP Flows');
+xticks(10:10:40);
 
 er = errorbar(nVoip, PLd_results', PLd_terms);
 er.LineStyle = 'none';
+
+set(f1a, 'Position', [100, 100, figureWidth, figureHeight]);
+saveas(f1a, fullfile('figures', '1a.png'));
+
+
 hold off;
 
 %voip
-figure(2);
+f1b = figure(2);
 hold on;
 grid on;
 
 bar(nVoip, PLv_results');
 title('Packet loss of VoIP (%)');
+ylabel('Packet Loss (%)');
+xlabel('Number of VoIP Flows');
+xticks(10:10:40);
 
 er = errorbar(nVoip, PLv_results', PLv_terms );
 er.LineStyle = 'none';
 
+set(f1b, 'Position', [100, 100, figureWidth, figureHeight]);
+saveas(f1b, fullfile('figures', '1b.png'));
+
 hold off;
+
+
 
 %% c
 
-figure(3);
+f2a = figure(3);
 %data
 hold on;
 grid on;
 
 bar(nVoip, APDd_results');
-title('Average Packet Delay of Data (ms)');
+title('Average Packet Delay of Data');
+xlabel('Number of VoIP Flows');
+xticks(10:10:40);
+ylabel('Packet delay (ms)');
 
 er = errorbar(nVoip, APDd_results', APDd_terms );
 er.LineStyle = 'none';
+
+set(f2a, 'Position', [100, 100, figureWidth, figureHeight]);
+saveas(f2a, fullfile('figures', '2a.png'));
+
 hold off;
 
-figure(4);
+f2b = figure(4);
 %voip
 hold on;
 grid on;
 
 bar(nVoip, APDv_results');
-title('Average Packet Delay of VoIP (ms)');
+title('Average Packet Delay of VoIP');
+xlabel('Number of VoIP Flows');
+xticks(10:10:40);
+ylabel('Packet delay (ms)');
+ylim([0 7]);
 
 er = errorbar(nVoip, APDv_results', APDv_terms );
 er.LineStyle = 'none';
+
+set(f2b, 'Position', [100, 100, figureWidth, figureHeight]);
+saveas(f2b, fullfile('figures', '2b.png'));
 
 hold off;
 
 %% d
 
-figure(5);
+f3a = figure(5);
 %data
 hold on;
 grid on;
 
 bar(nVoip, MPDd_results');
 title('Maximum Packet Delay of Data (ms)');
+xlabel('Number of VoIP Flows');
+xticks(10:10:40);
+ylabel('Packet delay (ms)');
+
 
 er = errorbar(nVoip, MPDd_results', MPDd_terms );
 er.LineStyle = 'none';
+
+set(f3a, 'Position', [100, 100, figureWidth, figureHeight]);
+saveas(f3a, fullfile('figures', '3a.png'));
+
 hold off;
 
-figure(6);
+f3b = figure(6);
 %voip
 hold on;
 grid on;
 
 bar(nVoip, MPDv_results');
 title('Maximum Packet Delay of VoIP (ms)');
+ylabel('Packet Delay (ms)');
+xlabel('Number of VoIP Flows');
+xticks(10:10:40);
+ylabel('Packet delay (ms)');
 
 er = errorbar(nVoip, MPDv_results', MPDv_terms );
 er.LineStyle = 'none';
+
+set(f3b, 'Position', [100, 100, figureWidth, figureHeight]);
+saveas(f3b, fullfile('figures', '3b.png'));
 
 hold off;
 
@@ -168,13 +216,22 @@ hold off;
 
 %% e
 
-figure(7);
+f4 = figure(7);
 %data
 hold on;
 grid on;
 
 bar(nVoip, TT_results');
+title('Total throughput')
+xlabel('Number of VoIP Flows');
+xticks(10:10:40);
+ylabel('Throughput (Mbps)')
+ylim([0 10]);
 
 er = errorbar(nVoip, TT_results', TT_terms );
 er.LineStyle = 'none';
+
+set(f4, 'Position', [100, 100, figureWidth, figureHeight]);
+saveas(f4, fullfile('figures', '4.png'));
+
 hold off;
