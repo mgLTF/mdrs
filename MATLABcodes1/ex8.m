@@ -39,7 +39,7 @@ end
 
 %% 8d 
 
-%load('InputData.mat')
+load('InputData.mat')
 nNodes= size(Nodes,1);
 nLinks= size(Links,1);
 nFlows= size(T,1);
@@ -65,14 +65,27 @@ for f= 1:nFlows
     selectedPath= bestSol(f);
     fprintf('Flow %d - Path %d:  %s\n',f,selectedPath,num2str(sP{f}{selectedPath}));
 end
+
 %Output of link loads of the routing solution:
 fprintf('Worst link load of the best solution = %.2f\n',bestObjective);
 fprintf('Link loads of the best solution:\n')
-for i= 1:nLinks
-    fprintf('{%d-%d}:\t%.2f\t%.2f\n',bestLoads(i,1),bestLoads(i,2),bestLoads(i,3),bestLoads(i,4))
-end
+
+%fprintf('{%d-%d}:\t%.2f\t%.2f\n',bestLoads(i,1),bestLoads(i,2),bestLoads(i,3),bestLoads(i,4))
+
 
 fprintf('No. of generated solutions = %d\n',noCycles);
 fprintf('Avg. worst link load among all solutions= %.2f\n',somador/contador);
 
 %% 8 e
+
+
+
+
+
+
+
+
+
+
+
+

@@ -42,7 +42,7 @@ for f=1:nFlows
 end
 
 % Visualizing all path pairs of flow 2:
-f= 2;
+f= 12;
 fprintf('Flow %d:\n',f);
 for i= 1:nSP(f)
     fprintf('  Path pair %d:\n',i);
