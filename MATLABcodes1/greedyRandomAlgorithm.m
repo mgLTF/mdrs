@@ -31,11 +31,6 @@ function [bestSol,bestObjective,noCycles,avObjective, bestLoadTime] = greedyRand
                 end
             end
             sol(flow) = path_index;
-
-
-            
-
-
         end
 
 

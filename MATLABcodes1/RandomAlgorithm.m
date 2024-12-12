@@ -1,4 +1,4 @@
-function [bestSol,bestObjective,noCycles,avObjective] = RandomAlgorithm(nNodes,Links,T,sP,nSP,timeLimit)
+function [bestSol,bestObjective,noCycles,avObjective, bestLoadTime] = RandomAlgorithm(nNodes,Links,T,sP,nSP,timeLimit)
     t= tic;
     nFlows= size(T,1);
     bestObjective= inf;
@@ -16,6 +16,7 @@ function [bestSol,bestObjective,noCycles,avObjective] = RandomAlgorithm(nNodes,L
         if load<bestObjective
             bestSol= sol;
             bestObjective= load;
+            bestLoadTime = toc(t);
         end
     end
     avObjective= aux/noCycles;

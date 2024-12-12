@@ -15,7 +15,7 @@ for f=1:nFlows
     nSP(f)= length(totalCost);
 end
 
-timeLimit = 10;
+timeLimit = 5;
 [bestSol,bestObjective,noCycles,avObjective, bestLoadTime] = RandomAlgorithm(nNodes,Links,T,sP,nSP,timeLimit);
 
 
@@ -24,7 +24,7 @@ fprintf('\t W = %.2f Gbps, No. sol = %d, Av. W = %.2f, time = %.2f sec\n', bestO
 
 %%
 
-timeLimit = 10;
+%timeLimit = 10;
 [bestSol,bestObjective,noCycles,avObjective, bestLoadTime] = greedyRandomAlgorithm(nNodes,Links,T,sP,nSP,timeLimit);
 
 
