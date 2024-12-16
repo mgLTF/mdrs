@@ -1,0 +1,47 @@
+[3 10]
+Total nº Cycles = 5314
+Running time at which the algorithm obtains its best solution = 2.23 s
+The number of cycles at which the algorithm obtains its best solution. = 229
+Worst round-trip delay (service 1) = 9.04 ms
+Average round trip delay (service 1) = 6.07 ms
+Worst round-trip delay (service 2) = 11.07 ms
+Average round trip delay (service 2) = 4.52 ms
+Worst round-trip delay (service 3) = 6.160000 ms
+Average round trip delay (service 3) = 3.430000 ms
+Worst link load of the network = 74.60 Gbps
+
+[1 6]
+Total nº Cycles = 5084
+Running time at which the algorithm obtains its best solution = 0.03 s
+The number of cycles at which the algorithm obtains its best solution. = 2
+Worst round-trip delay (service 1) = 10.39 ms
+Average round trip delay (service 1) = 5.95 ms
+Worst round-trip delay (service 2) = 11.07 ms
+Average round trip delay (service 2) = 4.57 ms
+Worst round-trip delay (service 3) = 6.410000 ms
+Average round trip delay (service 3) = 3.023333 ms
+Worst link load of the network = 60.00 Gbps
+
+[4 12]
+Total nº Cycles = 4226
+Running time at which the algorithm obtains its best solution = 0.08 s
+The number of cycles at which the algorithm obtains its best solution. = 5
+Worst round-trip delay (service 1) = 9.04 ms
+Average round trip delay (service 1) = 5.91 ms
+Worst round-trip delay (service 2) = 11.07 ms
+Average round trip delay (service 2) = 4.94 ms
+Worst round-trip delay (service 3) = 4.420000 ms
+Average round trip delay (service 3) = 2.898333 ms
+Worst link load of the network = 62.60 Gbps
+
+[5 14]
+Total nº Cycles = 4455
+Running time at which the algorithm obtains its best solution = 0.08 s
+The number of cycles at which the algorithm obtains its best solution. = 6
+Worst round-trip delay (service 1) = 10.13 ms
+Average round trip delay (service 1) = 6.21 ms
+Worst round-trip delay (service 2) = 11.07 ms
+Average round trip delay (service 2) = 4.34 ms
+Worst round-trip delay (service 3) = 4.900000 ms
+Average round trip delay (service 3) = 2.525000 ms
+Worst link load of the network = 60.00 Gbps
