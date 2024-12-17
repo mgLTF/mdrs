@@ -27,10 +27,9 @@ function [bestSol,tbestSol,bestObjective,totalNCycles, bestNCycles,avObjective] 
 end
 
 function sol = BuildSolution(sol, nNodes,Links,T,sP,nSP,nFlows, nFlows_unicast)
-    
     sol(nFlows_unicast+1:nFlows) = 1;
     Flow_order = randperm(nFlows_unicast);
-    %Flow_order = randperm(nFlows);
+
     for f=Flow_order
         best = inf;
         for i=1:nSP(f)

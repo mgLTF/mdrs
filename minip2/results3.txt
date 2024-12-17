@@ -1,0 +1,42 @@
+[3 10]
+
+Total nº Cycles = 9680
+Running time at which the algorithm obtains its best solution = 0.39 s
+The number of cycles at which the algorithm obtains its best solution. = 100
+Worst round-trip delay (service 1) = 10.13 ms
+Average round trip delay (service 1) = 6.41 ms
+Worst round-trip delay (service 2) = 11.07 ms
+Average round trip delay (service 2) = 6.52 ms
+Worst link load of the network = 74.60 Gbps
+
+
+[1 6]
+Total nº Cycles = 8374
+Running time at which the algorithm obtains its best solution = 0.03 s
+The number of cycles at which the algorithm obtains its best solution. = 3
+Worst round-trip delay (service 1) = 9.04 ms
+Average round trip delay (service 1) = 5.64 ms
+Worst round-trip delay (service 2) = 11.07 ms
+Average round trip delay (service 2) = 6.17 ms
+Worst link load of the network = 60.00 Gbps
+
+
+[4 12]
+Total nº Cycles = 6508
+Running time at which the algorithm obtains its best solution = 0.06 s
+The number of cycles at which the algorithm obtains its best solution. = 9
+Worst round-trip delay (service 1) = 9.04 ms
+Average round trip delay (service 1) = 5.68 ms
+Worst round-trip delay (service 2) = 11.07 ms
+Average round trip delay (service 2) = 6.34 ms
+Worst link load of the network = 62.60 Gbps
+
+[5 14]
+Total nº Cycles = 7731
+Running time at which the algorithm obtains its best solution = 0.02 s
+The number of cycles at which the algorithm obtains its best solution. = 1
+Worst round-trip delay (service 1) = 9.04 ms
+Average round trip delay (service 1) = 5.68 ms
+Worst round-trip delay (service 2) = 11.07 ms
+Average round trip delay (service 2) = 6.52 ms
+Worst link load of the network = 60.00 Gbps
