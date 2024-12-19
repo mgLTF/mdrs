@@ -1,0 +1,52 @@
+
+
+Anycast nodes= 3  10
+Total nº Cycles = 183
+Running time at which the algorithm obtains its best solution = 0.35 s
+The number of cycles at which the algorithm obtains its best solution. = 1
+Worst round-trip delay (unicast service s=1) = 11.27 ms +
+Average round-trip delay (unicast service s=1) = 6.50 ms +
+Worst round-trip delay (unicast service s=2) = 12.00 ms +
+Average round-trip delay (unicast service s=2) = 6.02 ms -
+Worst round-trip delay (anycast service) = 6.16 ms
+Average round-trip delay (anycast service) = 3.43 ms
+
+
+
+
+Anycast nodes= 1  6
+Total nº Cycles = 217
+Running time at which the algorithm obtains its best solution = 0.26 s
+The number of cycles at which the algorithm obtains its best solution. = 1
+Worst round-trip delay (unicast service s=1) = 11.98 ms +
+Average round-trip delay (unicast service s=1) = 5.89 ms +
+Worst round-trip delay (unicast service s=2) = 12.30 ms +
+Average round-trip delay (unicast service s=2) = 6.31 ms +
+Worst round-trip delay (anycast service) = 6.41 ms
+Average round-trip delay (anycast service) = 3.02 ms
+
+
+
+Anycast nodes= 4  12
+Total nº Cycles = 220
+Running time at which the algorithm obtains its best solution = 0.24 s
+The number of cycles at which the algorithm obtains its best solution. = 1
+Worst round-trip delay (unicast service s=1) = 11.06 ms +
+Average round-trip delay (unicast service s=1) = 6.93 ms +
+Worst round-trip delay (unicast service s=2) = 12.58 ms +
+Average round-trip delay (unicast service s=2) = 7.46 ms +
+Worst round-trip delay (anycast service) = 4.42 ms
+Average round-trip delay (anycast service) = 2.90 ms
+
+
+
+Anycast nodes= 5  14
+Total nº Cycles = 216
+Running time at which the algorithm obtains its best solution = 0.98 s
+The number of cycles at which the algorithm obtains its best solution. = 4
+Worst round-trip delay (unicast service s=1) = 11.98 ms +
+Average round-trip delay (unicast service s=1) = 6.14 ms +
+Worst round-trip delay (unicast service s=2) = 11.07 ms =
+Average round-trip delay (unicast service s=2) = 6.42 ms -
+Worst round-trip delay (anycast service) = 4.90 ms
+Average round-trip delay (anycast service) = 2.52 ms

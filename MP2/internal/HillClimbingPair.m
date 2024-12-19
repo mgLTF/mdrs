@@ -1,10 +1,10 @@
-function sol = HillClimbing(sol, nNodes,Links,T,sP,nSP, nFlows_unicast)
+function sol = HillClimbingPair(sol, nNodes,Links,T,sP,nSP, nFlows_unicast)
     %nFlows = length(sol);
     improving = true;
     while improving
         % Get current best solution and respective load
         current_sol = sol;
-        Loads= calculateLinkLoads(nNodes,Links,T(:,2:end),sP,current_sol);
+        Loads= calculateLinkBand1to1(nNodes,Links,T(:,2:end),sP,current_sol);
         load= max(max(Loads(:,3:4)));
         best = load;
         bestmove = [];
@@ -16,7 +16,7 @@ function sol = HillClimbing(sol, nNodes,Links,T,sP,nSP, nFlows_unicast)
                     continue
                 end
                 sol(f) = i;
-                Loads= calculateLinkLoads(nNodes,Links,T(:,2:end),sP,sol);
+                Loads= calculateLinkBand1to1(nNodes,Links,T(:,2:end),sP,sol);
                 load= max(max(Loads(:,3:4)));
                 if load < best
                     best= load;

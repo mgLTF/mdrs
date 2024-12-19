@@ -6,7 +6,7 @@ clc
 load('InputDataProject2.mat');
 nNodes = size(Nodes,1);
 
-anycastNodes = [5 14];
+anycastNodes = [3 10];
 unicastServices = [1 2];
 
 % [3 10]
@@ -20,16 +20,16 @@ k = 6;
 [sP,nSP,totalCosts_unicast, totalCosts_anycast,T] = createPathFlows(D, T, k, unicastServices, anycastNodes);
 
 
-timeLimit = 30;
+timeLimit = 40;
 
 [bestSol,tbestSol,bestObjective,totalNCycles, bestNCycles,avObjective] = AlgorithmD(nNodes,Links,T,sP,nSP,timeLimit, unicastServices);
 
-
+%%
 clc
 fprintf("Total nº Cycles = %d\n", totalNCycles);
 fprintf("Running time at which the algorithm obtains its best solution = %.2f s\n", tbestSol);
 fprintf("The number of cycles at which the algorithm obtains its best solution. = %d\n", bestNCycles);
-
+%%
 
 nFlows_unicast = nnz(ismember(T(:,1),unicastServices));
 nServices = length(unicastServices);
@@ -49,36 +49,41 @@ end
 averageDelay = averageDelay * 2 * (10^3);
 worstDelay = worstDelay * 2 * (10^3);
 
-
+%%
 nFlows_s1 = 12; nFlows_s2 = 8; %TODO
 
 fprintf("Worst round-trip delay (service 1) = %.2f ms\n", worstDelay(1));
 fprintf("Average round trip delay (service 1) = %.2f ms\n", averageDelay(1)/nFlows_s1);
 
 fprintf("Worst round-trip delay (service 2) = %.2f ms\n", worstDelay(2));
-fprintf("Average round trip delay (service 2) = %.2f ms\n", averageDelay(2)/nFlows_s2);
+fprintf("Average round trip delay (service 2) = %.2f ms\n", averageDelay(2)/nFlows_s1); % não devia de estar dividir por nFlows_s2?
 
-fprintf("Worst round-trip delay (service 3) = %.2f ms\n", max(totalCosts_anycast) * 2 * (10^3));
-fprintf("Average round trip delay (service 3) = %.2f ms\n", mean(totalCosts_anycast) * 2 * (10^3));
+fprintf("Worst round-trip delay (service 3) = %f ms\n", max(totalCosts_anycast) * 2 * (10^3));
+fprintf("Average round trip delay (service 3) = %f ms\n", mean(totalCosts_anycast) * 2 * (10^3));
 
 fprintf("Worst link load of the network = %.2f Gbps\n", bestObjective);
 
+%% test of calc done in task3
 
-%%
-sol = [];
-for i=1:32
-    sol = [sol; sP{i}(bestSol(i))];
+best_totalCosts_unicast1_a = zeros(1,nFlows_s1);
+best_totalCosts_unicast2_a = zeros(1,nFlows_unicast-nFlows_s1);
+
+for f=1:nFlows_s1
+    best_totalCosts_unicast1_a(f) = totalCosts_unicast(f,bestSol(f));
 end
 
-allNumbers = []; % Initialize an empty array
-for i = 1:length(sol)
-    allNumbers = [allNumbers, sol{i}]; % Concatenate each cell's contents
+for f= nFlows_s1+1:nFlows_unicast
+    i = f-nFlows_s1;
+    best_totalCosts_unicast2_a(i) = totalCosts_unicast(f, bestSol(f));
 end
 
-targetNumber = 14;
+fprintf("Anycast nodes= %s\n", num2str(anycastNodes))
 
-% Count occurrences of the target number
-count = sum(allNumbers == targetNumber);
+fprintf("Worst round-trip delay (unicast service s=1) = %.2f ms\n", max(best_totalCosts_unicast1_a*2)*1e3)
+fprintf("Average round-trip delay (unicast service s=1) = %.2f ms\n", mean(best_totalCosts_unicast1_a*2)*1e3)
 
-% Display the result
-disp(['The number ' num2str(targetNumber) ' occurs ' num2str(count) ' times.']);
+fprintf("Worst round-trip delay (unicast service s=2) = %.2f ms\n", max(best_totalCosts_unicast2_a*2)*1e3)
+fprintf("Average round-trip delay (unicast service s=2) = %.2f ms\n", mean(best_totalCosts_unicast2_a*2)*1e3)
+
+fprintf("Worst round-trip delay (anycast service) = %.2f ms\n", max(totalCosts_anycast*2)*1e3)
+fprintf("Average round-trip delay (anycast service) = %.2f ms\n", mean(totalCosts_anycast*2)*1e3)

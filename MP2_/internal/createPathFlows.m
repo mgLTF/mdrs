@@ -36,14 +36,14 @@ function [sP,nSP,totalCosts_unicast, totalCosts_anycast,T] = createPathFlows(cos
     nFlows= size(T,1);
     nFlows_unicast = nnz(ismember(T(:,1),unicastservices));
     n_anycastNodes = length(anycastNodes);
-    totalCosts_unicast = zeros(nFlows_unicast, k);
+    totalCosts_unicast = zeros(nFlows_unicast, 1);
     totalCosts_anycast = zeros(nFlows - nFlows_unicast, 1);
     
     % Possible anycast paths
     possible_shortestPath = cell(n_anycastNodes,1);
     possible_totalCost = zeros(n_anycastNodes,1);
     
-    %k= 1;
+    k= 1;
     sP= cell(1,nFlows);
     nSP= zeros(1,nFlows);
 
@@ -53,7 +53,7 @@ function [sP,nSP,totalCosts_unicast, totalCosts_anycast,T] = createPathFlows(cos
             [shortestPath, totalCost] = kShortestPath(costMatrix,T(f,2),T(f,3),k);
             sP{f}= shortestPath;
             nSP(f)= length(totalCost);
-            totalCosts_unicast(f,:) = totalCost;
+            totalCosts_unicast(f) = totalCost;
         else 
             % Flow is anycast
             if ismember(T(f,2), anycastNodes)
@@ -63,7 +63,7 @@ function [sP,nSP,totalCosts_unicast, totalCosts_anycast,T] = createPathFlows(cos
                 % totalCost is already initialize to zero
             else
                 for node = 1:n_anycastNodes
-                    [possible_shortestPath(node), possible_totalCost(node)] = kShortestPath(costMatrix,T(f,2),anycastNodes(node),1);
+                    [possible_shortestPath(node), possible_totalCost(node)] = kShortestPath(costMatrix,T(f,2),anycastNodes(node),k);
                 end
                 [M, I] = min(possible_totalCost);
                 sP{f} = possible_shortestPath(I);
